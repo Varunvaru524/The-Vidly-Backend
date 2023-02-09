@@ -1,16 +1,7 @@
+let GenresModel = require('../Models/GenresModel')
 let mongoose = require('mongoose')
 let express = require('express')
 let router = express.Router()
-
-
-let genresSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true,
-        minlength:2
-    }
-})
-let GenresModel = mongoose.model('genres',genresSchema)
 
 
 router.get('/',(request,response)=>{
@@ -39,6 +30,7 @@ router.put('/:id',(request,response)=>{
     GenresModel.findById(request.params.id)
     .then(resolve=>{
         resolve.name = request.body.name
+
         resolve.save()
         .then(resolve=> response.send(resolve))
         .catch(reject=>response.send(reject.message))

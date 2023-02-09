@@ -1,14 +1,6 @@
+let CustomersModel = require('../Models/CustomerModel')
 let express = require('express')
 let router = express.Router()
-let mongoose = require('mongoose')
-
-
-let schema = new mongoose.Schema({
-    name:{type:String, required:true, minlength:2},
-    phone:{type:Number, required:true},
-    isGold:{type:Boolean, default:false}
-})
-let CustomersModel = mongoose.model('customers',schema)
 
 
 router.get('/',(request,response)=>{
