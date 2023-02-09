@@ -50,8 +50,9 @@ router.put('/:id',(request,response)=>{
 
 router.delete('/:id',(request,response)=>{
     CustomersModel.findByIdAndDelete(request.params.id)
-    .then(resolve=>response.send(resolve))
+    .then(resolve=>resolve?response.send(resolve):response.status(404).send("Customer Dosn't Exist"))
     .catch(reject=>response.status(404).send('Invalid Id'))
 })
+
 
 module.exports = router

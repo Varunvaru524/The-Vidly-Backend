@@ -1,5 +1,6 @@
 let genres = require('./Routes/genres')
 let customers = require('./Routes/customers')
+let movies = require('./Routes/movies')
 let mongoose = require('mongoose')
 let express = require('express')
 let app = express()
@@ -13,6 +14,7 @@ mongoose.connect('mongodb://localhost/The-Vidly-Backend')
 app.use(express.json())
 app.use('/api/genres',genres)
 app.use('/api/customers', customers)
+app.use('/api/movies',movies)
 
 
 let port = process.env.PORT || 3000
