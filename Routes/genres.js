@@ -21,8 +21,8 @@ router.get('/',(request,response)=>{
 
 router.get('/:id',(request,response)=>{
     GenresModel.findById(request.params.id)
-    .then(resolve=>response.send(resolve))
-    .catch(reject=>response.status(404).send("Invalid"))
+    .then(resolve=>resolve?response.send(resolve):response.status(404).send("Genre Dosn't Exist"))
+    .catch(reject=>response.status(404).send("Invalid Id"))
 })
 
 router.post('/',(request,response)=>{
