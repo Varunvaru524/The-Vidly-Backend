@@ -1,4 +1,4 @@
-let UsersModel = require('../Models/Users')
+let UsersModel = require('../Models/UsersModel')
 let bcrypt = require('bcrypt')
 let express = require('express')
 let router = express.Router()
