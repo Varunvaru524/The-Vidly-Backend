@@ -1,6 +1,7 @@
 let genres = require('./Routes/genres')
 let customers = require('./Routes/customers')
 let movies = require('./Routes/movies')
+let users = require('./Routes/users')
 let mongoose = require('mongoose')
 let express = require('express')
 let app = express()
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use('/api/genres',genres)
 app.use('/api/customers', customers)
 app.use('/api/movies',movies)
+app.use('/api/users',users)
 
 
 let port = process.env.PORT || 3000
