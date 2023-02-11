@@ -18,7 +18,7 @@ let schema = new mongoose.Schema({
         type:String,
         required:true,
         minlength:3,
-        maxlength:1000
+        maxlength:100
     }
 })
 let UsersModel = mongoose.model('users',schema)

@@ -1,12 +1,18 @@
 let UsersModel = require('../Models/UsersModel')
-let bcrypt = require('bcrypt')
 let express = require('express')
 let router = express.Router()
 
-router.post('/',async (request,response)=>{
+router.post('/', (request,response)=>{
     let {email,password} = request.body
 
-    response.send('Auth Post request')
+    UsersModel.find({email,password})
+    .then(resolve=>{
+        if (resolve.length !== 0) {
+            response.send("JWT Token")
+        }
+        else response.send('Invalid Email or Password')
+    })
+    .catch(reject=>response.send("Internal Error"))
 })
 
 module.exports = router
