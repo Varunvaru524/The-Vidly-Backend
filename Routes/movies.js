@@ -1,5 +1,6 @@
 let MoviesModel = require('../Models/MoviesModel')
 let GenresModel = require('../Models/GenresModel')
+let authMiddleware = require('../middleware/authMiddleware')
 let express = require('express')
 let router = express.Router()
 
@@ -10,14 +11,14 @@ router.get('/',(request,response)=>{
     .catch(reject=>response.status(400).send('Internal Error'))
 })
 
-router.get('/:id',(request,response)=>{
+router.get('/:id',authMiddleware,(request,response)=>{
     MoviesModel.findById(request.params.id)
     .populate('genre')
     .then(resolve=>resolve?response.send(resolve):response.status(404).send("Movie Dosn't Exist"))
     .catch(reject=>response.status(400).send('Invalid Id'))
 })
 
-router.post('/',(request,response)=>{
+router.post('/',authMiddleware,(request,response)=>{
     let {title, genre, dailyRentalRate, numberInStock} = request.body
 
     validateGenre(genre,(result)=>{
@@ -39,7 +40,7 @@ router.post('/',(request,response)=>{
     })
 })
 
-router.put('/:id',(request,response)=>{
+router.put('/:id',authMiddleware,(request,response)=>{
     let {title, genre, dailyRentalRate, numberInStock} = request.body
 
     validateGenre(genre,(result)=>{
@@ -66,7 +67,7 @@ router.put('/:id',(request,response)=>{
     })
 })
 
-router.delete('/:id',(request,response)=>{
+router.delete('/:id',authMiddleware,(request,response)=>{
     MoviesModel.findByIdAndDelete(request.params.id)
     .populate('genre')
     .then(resolve=>resolve?response.send(resolve):response.status(404).send("Movie Dosn't Exist"))
