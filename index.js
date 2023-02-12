@@ -9,10 +9,10 @@ let express = require('express')
 let app = express()
 
 
-// if (!config.get('JwtPrivateKey')) {
-//     console.log("Faital Error: Jwt Private Key is not defined")
-//     process.exit()
-// }
+if (!config.get('JwtPrivateKey')) {
+    console.log("Faital Error: Jwt Private Key is not defined")
+    process.exit()
+}
 
 
 mongoose.set('strictQuery', true)
