@@ -4,8 +4,16 @@ let movies = require('./Routes/movies')
 let users = require('./Routes/users')
 let auth = require('./Routes/auth')
 let mongoose = require('mongoose')
+let config = require('config')
 let express = require('express')
 let app = express()
+
+
+// if (!config.get('JwtPrivateKey')) {
+//     console.log("Faital Error: Jwt Private Key is not defined")
+//     process.exit()
+// }
+
 
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://localhost/The-Vidly-Backend')
@@ -21,5 +29,5 @@ app.use('/api/users',users)
 app.use('/api/auth',auth)
 
 
-let port = process.env.PORT || 3000
+let port = config.get('Port') || 3000
 app.listen(port,()=>console.log('Listning at port 3000...'))
