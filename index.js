@@ -13,10 +13,14 @@ if (!config.get('JwtPrivateKey')) {
     console.log("Faital Error: Jwt Private Key is not defined")
     process.exit()
 }
+if (!config.get('db')) {
+    console.log("Faital Error: Database Connection String is not defined");
+    process.exit()
+}
 
 
 mongoose.set('strictQuery', true)
-mongoose.connect('mongodb://localhost/The-Vidly-Backend')
+mongoose.connect(config.get('db'))
 .then(resolve=>console.log('Successfully connected to MongoDB'))
 .catch(reject=>console.log('Failed to connected to MongoDB'))
 

@@ -1,4 +1,5 @@
 {
     "JwtPrivateKey":"JWT",
-    "Port": "PORT"
+    "Port": "PORT",
+    "db":"DB"
 }
