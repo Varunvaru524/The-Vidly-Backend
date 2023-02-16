@@ -10,6 +10,16 @@ let express = require('express')
 let app = express()
 
 
+process.on('uncaughtException',()=>{
+    // Log error
+    console.log('Caught the Uncaught Exception');
+})
+process.on('unhandledRejection',()=>{
+    // Log error
+    console.log('Caught the Unhandled Rejection');
+})
+
+
 if (!config.get('JwtPrivateKey')) {
     console.log("Faital Error: Jwt Private Key is not defined")
     process.exit()
