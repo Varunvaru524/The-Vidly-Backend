@@ -4,10 +4,10 @@ let express = require('express')
 let router = express.Router()
 
 
-router.get('/',(request,response)=>{
+router.get('/',(request,response,next)=>{
     GenresModel.find().sort({name:1})
     .then(resolve=>response.send(resolve))
-    .catch(reject=>response.status(400).send('Internal Error'))
+    .catch(reject=>next(reject))
 })
 
 router.get('/:id',(request,response)=>{

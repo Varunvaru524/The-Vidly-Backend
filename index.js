@@ -3,6 +3,7 @@ let customers = require('./Routes/customers')
 let movies = require('./Routes/movies')
 let users = require('./Routes/users')
 let auth = require('./Routes/auth')
+let errorMiddleware = require('./middleware/errorMiddleware')
 let mongoose = require('mongoose')
 let config = require('config')
 let express = require('express')
@@ -31,6 +32,7 @@ app.use('/api/customers', customers)
 app.use('/api/movies',movies)
 app.use('/api/users',users)
 app.use('/api/auth',auth)
+app.use(errorMiddleware)
 
 
 let port = config.get('Port') || 3000
