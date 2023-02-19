@@ -46,4 +46,4 @@ app.use(errorMiddleware)
 
 
 let port = config.get('Port') || 3000
-app.listen(port,()=>console.log('Listning at port 3000...'))
+module.exports = app.listen(port,()=>console.log('Listning at port 3000...'))
