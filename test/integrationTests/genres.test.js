@@ -3,7 +3,7 @@ let request = require('supertest')
 
 describe('genresApi',()=>{
     beforeEach(()=>{server = require('../../index')})
-    afterEach(()=>{server.close()})
+    afterEach(async ()=>{await server.close()})
     
     it('Should return all the genres', async ()=>{
         let result = await request(server).get('/api/genres')
